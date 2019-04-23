@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import conexion.JdbcDerbyConnection;
+import conexion.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -61,7 +61,7 @@ public class Video {
     }
     
     static public List<Video> getFullVideoList(){
-        Connection connection = JdbcDerbyConnection.ConexionDB();
+        Connection connection = DBConnection.ConexionDB();
         List<Video> list= new ArrayList<Video>();
         String sql = "select * from VIDEOS ORDER BY id DESC";
         try{PreparedStatement statement = connection.prepareStatement(sql);
@@ -96,7 +96,7 @@ public class Video {
     }
     
     private boolean randomExists(int n){
-        Connection connection = JdbcDerbyConnection.ConexionDB();
+        Connection connection = DBConnection.ConexionDB();
         
         String sql = "select * from videos where id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -113,7 +113,7 @@ public class Video {
     }
     
     public boolean alreadyExists(){
-        Connection connection = JdbcDerbyConnection.ConexionDB();
+        Connection connection = DBConnection.ConexionDB();
         
         String sql = "select * from videos where titulo = ?";
  
@@ -133,7 +133,7 @@ public class Video {
     }
     
     public boolean addVideo(){
-        Connection connection = JdbcDerbyConnection.ConexionDB();
+        Connection connection = DBConnection.ConexionDB();
         
         String sql = "INSERT INTO VIDEOS VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {

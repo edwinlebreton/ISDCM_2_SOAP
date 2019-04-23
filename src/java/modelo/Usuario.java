@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import conexion.JdbcDerbyConnection;
+import conexion.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,7 +46,7 @@ public class Usuario {
     
     public boolean userNameExists() {
         
-        Connection connection = JdbcDerbyConnection.ConexionDB();
+        Connection connection = DBConnection.ConexionDB();
         
         String sql = "select * from users where username = ? or email = ?";
  
@@ -76,7 +76,7 @@ public class Usuario {
     
     public boolean exists() {
         
-        Connection connection = JdbcDerbyConnection.ConexionDB();
+        Connection connection = DBConnection.ConexionDB();
         
         String sql = "select * from users where (username = ? or email = ?) and password = ?";
  
@@ -106,7 +106,7 @@ public class Usuario {
     }
     
     public boolean addUser(){
-        Connection connection = JdbcDerbyConnection.ConexionDB();
+        Connection connection = DBConnection.ConexionDB();
         
         String sql = "INSERT INTO USERS VALUES (?, ?, ?, ?, ?)";
  
